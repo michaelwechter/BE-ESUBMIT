@@ -107,7 +107,7 @@ namespace ClassRunMain
                             //Data update
                             switch (RetErr)
                                 {
-                                case CertnaBase.Certna.Errors.Done:
+                                case CertnaBase.Certna.Errors.Done: 
                                     RetErr = 0;
                                     break;
 

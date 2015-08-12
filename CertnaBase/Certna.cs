@@ -101,7 +101,7 @@ namespace CertnaBase
                             if (thispayloadid != curPayload)
                                 {
                                 string sfile = sXMLPackageLocation + drCust["ID"].ToString() + "_" + drp["orderNumber"].ToString() + DateTime.Now.ToString( sFileFormat) + ".xml";
-                                if (WritePackage( doc, sfile ) == false)
+                                if (WritePackage( doc, sfile ) == false) 
                                     {
                                     System.Diagnostics.Debug.Print( "WriteDocument Err:" );
                                     Sql.WriteEvent( "CertnaBase.BuildXML WritePackage3: [" + sfile + "] ", true );
