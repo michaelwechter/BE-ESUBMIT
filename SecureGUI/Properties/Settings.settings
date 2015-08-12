@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SecureGUI.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="dbMySql" Type="System.String" Scope="User">
+      <Value Profile="(Default)">server=10.38.18.205;user id=michaelw;persistsecurityinfo=True;database=qc_acmedev_1</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

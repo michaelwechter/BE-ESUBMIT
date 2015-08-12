@@ -1,0 +1,467 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B8156A69-9525-4B95-8A6A-6B1BD6AD0461}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WinFormTest</RootNamespace>
+    <AssemblyName>WinFormTest</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>WinFormTest.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\secure.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Ribbon" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CacheViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CacheViewerForm.Designer.cs">
+      <DependentUpon>CacheViewerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\BatchDetailControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ClientControls\BatchDetailControl.Designer.cs">
+      <DependentUpon>BatchDetailControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\CityDetailControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ClientControls\CityDetailControl.Designer.cs">
+      <DependentUpon>CityDetailControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\CountyInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ClientControls\CountyInfoControl.Designer.cs">
+      <DependentUpon>CountyInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\DocumentInfoNamesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientControls\DocumentInfoNamesForm.Designer.cs">
+      <DependentUpon>DocumentInfoNamesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\DocumentInfoFeesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientControls\DocumentInfoFeesForm.Designer.cs">
+      <DependentUpon>DocumentInfoFeesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\DocumentInfoCitiesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientControls\DocumentInfoCitiesForm.Designer.cs">
+      <DependentUpon>DocumentInfoCitiesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\DocumentInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ClientControls\DocumentInfoControl.Designer.cs">
+      <DependentUpon>DocumentInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\DocumentInfoTitlesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientControls\DocumentInfoTitlesForm.Designer.cs">
+      <DependentUpon>DocumentInfoTitlesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\FeeDetailControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ClientControls\FeeDetailControl.Designer.cs">
+      <DependentUpon>FeeDetailControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\FileContentInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ClientControls\FileContentInfoControl.Designer.cs">
+      <DependentUpon>FileContentInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\IndexOptionDetailControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ClientControls\IndexOptionDetailControl.Designer.cs">
+      <DependentUpon>IndexOptionDetailControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\MemoDetailControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ClientControls\MemoDetailControl.Designer.cs">
+      <DependentUpon>MemoDetailControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\MemoDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientControls\MemoDetailForm.Designer.cs">
+      <DependentUpon>MemoDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\NameDetailControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ClientControls\NameDetailControl.Designer.cs">
+      <DependentUpon>NameDetailControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\RequestingPartyInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ClientControls\RequestingPartyInfoControl.Designer.cs">
+      <DependentUpon>RequestingPartyInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UserInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ClientControls\UserInfoControl.Designer.cs">
+      <DependentUpon>UserInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CountyPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CountyPanel.Designer.cs">
+      <DependentUpon>CountyPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExceptionBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExceptionBox.Designer.cs">
+      <DependentUpon>ExceptionBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileChooserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileChooserForm.Designer.cs">
+      <DependentUpon>FileChooserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParamInputControls\EnumSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ParamInputControls\EnumSelector.Designer.cs">
+      <DependentUpon>EnumSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParamInputControls\FileSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ParamInputControls\FileSelector.Designer.cs">
+      <DependentUpon>FileSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParamInputControls\InputControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ParamInputControls\InputControlBase.Designer.cs">
+      <DependentUpon>InputControlBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParamInputControls\ProcessQueueXML_GUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ParamInputControls\ProcessQueueXML_GUI.Designer.cs">
+      <DependentUpon>ProcessQueueXML_GUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParamInputControls\TextInput.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ParamInputControls\TextInput.Designer.cs">
+      <DependentUpon>TextInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputForm.Designer.cs">
+      <DependentUpon>InputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParamInputControls\TextInputMultiline.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ParamInputControls\TextInputMultiline.Designer.cs">
+      <DependentUpon>TextInputMultiline.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\ProcessQueueDetailControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ClientControls\ProcessQueueDetailControl.Designer.cs">
+      <DependentUpon>ProcessQueueDetailControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SubmitterPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SubmitterPanel.Designer.cs">
+      <DependentUpon>SubmitterPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\SubmittingPartyInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ClientControls\SubmittingPartyInfoControl.Designer.cs">
+      <DependentUpon>SubmittingPartyInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestController.cs" />
+    <Compile Include="TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ClientControls\TitleDetailControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ClientControls\TitleDetailControl.Designer.cs">
+      <DependentUpon>TitleDetailControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utf8StringWriter.cs" />
+    <EmbeddedResource Include="CacheViewerForm.resx">
+      <DependentUpon>CacheViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\BatchDetailControl.resx">
+      <DependentUpon>BatchDetailControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\CityDetailControl.resx">
+      <DependentUpon>CityDetailControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\CountyInfoControl.resx">
+      <DependentUpon>CountyInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\DocumentInfoNamesForm.resx">
+      <DependentUpon>DocumentInfoNamesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\DocumentInfoFeesForm.resx">
+      <DependentUpon>DocumentInfoFeesForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\DocumentInfoCitiesForm.resx">
+      <DependentUpon>DocumentInfoCitiesForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\DocumentInfoControl.resx">
+      <DependentUpon>DocumentInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\DocumentInfoTitlesForm.resx">
+      <DependentUpon>DocumentInfoTitlesForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\FeeDetailControl.resx">
+      <DependentUpon>FeeDetailControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\FileContentInfoControl.resx">
+      <DependentUpon>FileContentInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\IndexOptionDetailControl.resx">
+      <DependentUpon>IndexOptionDetailControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\MemoDetailControl.resx">
+      <DependentUpon>MemoDetailControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\MemoDetailForm.resx">
+      <DependentUpon>MemoDetailForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\NameDetailControl.resx">
+      <DependentUpon>NameDetailControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\ProcessQueueDetailControl.resx">
+      <DependentUpon>ProcessQueueDetailControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\RequestingPartyInfoControl.resx">
+      <DependentUpon>RequestingPartyInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\SubmittingPartyInfoControl.resx">
+      <DependentUpon>SubmittingPartyInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\TitleDetailControl.resx">
+      <DependentUpon>TitleDetailControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientControls\UserInfoControl.resx">
+      <DependentUpon>UserInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CountyPanel.resx">
+      <DependentUpon>CountyPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExceptionBox.resx">
+      <DependentUpon>ExceptionBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileChooserForm.resx">
+      <DependentUpon>FileChooserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParamInputControls\EnumSelector.resx">
+      <DependentUpon>EnumSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParamInputControls\FileSelector.resx">
+      <DependentUpon>FileSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParamInputControls\InputControlBase.resx">
+      <DependentUpon>InputControlBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParamInputControls\TextInput.resx">
+      <DependentUpon>TextInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputForm.resx">
+      <DependentUpon>InputForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParamInputControls\TextInputMultiline.resx">
+      <DependentUpon>TextInputMultiline.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubmitterPanel.resx">
+      <DependentUpon>SubmitterPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\secure.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Schema\Controller.Media.Schema.csproj">
+      <Project>{ed75e520-9d40-4b21-bf81-107c10d9d828}</Project>
+      <Name>Controller.Media.Schema</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

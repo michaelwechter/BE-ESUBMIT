@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WinFormTest.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SECURE_API_URI_COUNTY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://127.0.0.1/WebAPI/</Value>
+    </Setting>
+    <Setting Name="Default_Submitter_Password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Secure123456</Value>
+    </Setting>
+    <Setting Name="Default_Submitter_UserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Default_County_Password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Secure123456</Value>
+    </Setting>
+    <Setting Name="Default_County_UserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SECURE_API_URI_SUBMITTER" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://127.0.0.1/WebAPI/</Value>
+    </Setting>
+    <Setting Name="Default_County_Password_2Factor" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="TwoFactor_Enabled_County" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="TwoFactor_Enabled_Submitter" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

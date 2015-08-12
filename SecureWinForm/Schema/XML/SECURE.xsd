@@ -1,0 +1,2102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.secure-recording.com/schemas"
+    elementFormDefault="qualified"
+    xmlns="http://www.secure-recording.com/schemas"
+    xmlns:secure="http://www.secure-recording.com/schemas"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    version="3.5.0.0"
+>
+
+  <xs:element name="Authentication" type="secure:AuthenticationDetail">
+    <xs:annotation>
+      <xs:documentation>
+        The Authentication element contains information detailing a users authentication credentials. The Authentication element is used when a user logins to the SECURE System.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  
+  <xs:element name="Session" type="secure:SessionDetail">
+    <xs:annotation>
+      <xs:documentation>
+        The Session element contains information detailing the users active session. The Session element is returned when a user logins successfully to the SECURE System.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="BatchWithDocuments" type="secure:BatchWithDocumentsDetail">
+    <xs:annotation>
+      <xs:documentation>
+        The Batch with Documents element collection contains a complete batch including a collection of all Document Details.  This element should only be used to bulk upload and download a batch. 
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Batches" type="secure:BatchesDetail">
+    <xs:annotation>
+      <xs:documentation>
+        The Batches element contains a collection of Batch elements.  The Batches element is used to read one or more Batch elements from the SECURE System.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  
+  <xs:element name="Batch" type="secure:BatchDetail">
+    <xs:annotation>
+      <xs:documentation>
+        The Batch element contains a collection of recordable documents, PCORs, and other supporting documentation transmitted to the County Recorder.  The Document node in the Batch element only contains the Document meta-data, and it does not include the image data (payload).
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Document" type="secure:DocumentDetail">
+    <xs:annotation>
+      <xs:documentation>
+        The Document element contains the document, PCORs or other supporting documentation transmitted to the County Recorder. The Document element contains the image data (payload).
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Titles" type="secure:TitlesDetail">
+    <xs:annotation>
+      <xs:documentation>
+        The Titles element contains a collection of document recording titles assigned by each County.  The Titles index is optional for each County. Please see the Index Options to determine if the Titles index is enable for the target County.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  
+  <xs:element name="Cities" type="secure:CitiesDetail">
+    <xs:annotation>
+      <xs:documentation>
+        The Cities element contains a collection of cities for each County.  It identifies the city where the transfer of interest in real property occurred.  The Cities index is optional for each County. Please see the Index Options to determine if the Cities Index enable for the target County.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  
+  <xs:element name="ProcessQueues" type="secure:ProcessQueuesDetail">
+    <xs:annotation>
+      <xs:documentation>
+        The Process Queues element contains the list of available work queues that are defined by each County where Submitting Parties submit batches of documents for examination and recording.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  
+  <xs:element name="Counties" type="secure:CountiesInfo">
+    <xs:annotation>
+      <xs:documentation>
+        The Counties element contains the list of available County elements in the SECURE v3 System.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="County" type="secure:CountyInfo">
+    <xs:annotation>
+      <xs:documentation>
+        The County element contains information about the specific County including the system ID, name, and FIPS codes.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="RequestingParties" type="secure:RequestingPartiesInfo">
+    <xs:annotation>
+      <xs:documentation>
+        The Requesting Parties element contains the list of available Requesting Parties for a specified Submitting Party.  The Requesting Parties index is optional for each County. Please see the Index Options to determine if the Requesting Parties Index enable for the target County.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="SubmittingParties" type="secure:SubmittingPartiesInfo">
+    <xs:annotation>
+      <xs:documentation>
+        The Submitting Parties element contains the list of available Submitting Parties for a County.  The Submitting Party is only accessible by the target County if the Submitting Party has been granted access to one or more of the Counties Process Queues.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="IndexOptions" type="secure:IndexOptionDetail">
+    <xs:annotation>
+      <xs:documentation>
+        The Index Options element contains the configurable batch and document indices that enabled by each County.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Result" type="secure:ResultDetail">
+    <xs:annotation>
+      <xs:documentation>
+        The Result element contains the Boolean (true or false) return value.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="AuthenticationDetail">
+    <xs:annotation>
+      <xs:documentation>
+        The user's authentication credentials used to login to the system.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence maxOccurs="1" minOccurs="1">
+      <xs:element name="UserName">
+        <xs:annotation>
+          <xs:documentation>
+            The unique sequence of characters used to identify a user and allow access to the system.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="30"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Password">
+        <xs:annotation>
+          <xs:documentation>
+            The unique sequence of characters used by authorized persons to prove their right to access the system.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="256"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="NewPassword" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Used to change the user's password. Field is ignored on login.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="256"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="TwoFactorPassword" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The user's one time token key.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="256"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SessionDetail">
+    <xs:annotation>
+      <xs:documentation>
+        The Session information detailing the users active session.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence maxOccurs="1" minOccurs="1">
+      <xs:element name="SessionTokenID">
+        <xs:annotation>
+          <xs:documentation>
+            The Session Token ID used to identify the users active session.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="128"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="PasswordExpired" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>
+            The user's password has expired and must be changed before additional using the system.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FirstName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            The first name of the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LastName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            The last name of the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserType" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            The type of the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="BatchWithDocumentsDetail">
+    <xs:annotation>
+      <xs:documentation>
+        A collection that contains the complete batch including all associated documents.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Batch" type="secure:BatchDetail" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            A collection of recordable documents, PCORs, and other supporting documentation transmitted to the County Recorder as a Batch.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Documents" type="secure:DocumentsDetail" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            A collection that contains contains bulk upload documents.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="BatchesDetail">
+    <xs:annotation>
+      <xs:documentation>
+        A collection that contains submitted batches.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Batch" type="secure:BatchDetail" maxOccurs="100">
+        <xs:annotation>
+          <xs:documentation>
+            A collection that contains submitted batches.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="BatchDetail">
+    <xs:annotation>
+      <xs:documentation>
+        A collection of recordable documents, PCORs, and other supporting documentation transmitted to the County Recorder as a Batch.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence maxOccurs="1" minOccurs="1">
+      <xs:element name="Name">
+        <xs:annotation>
+          <xs:documentation>
+            The name given to batch by the Submitter.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="25"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="County" type="secure:CountyInfo">
+        <xs:annotation>
+          <xs:documentation>
+            The meta-data for a County where the Batch was submitted.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ProcessQueue" type="secure:ProcessQueueDetail">
+        <xs:annotation>
+          <xs:documentation>
+            The meta-data for a County process queue where the Batch was submitted.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TransactionNumber" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The reference number for the point-of-sale transaction that is associated with the batch.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="StatusCode" type="secure:BatchMediaStatusCode">
+        <xs:annotation>
+          <xs:documentation>
+            The codes that uniquely identify status of the Batch as the Batch transitions through the states of transmittal and recording.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CheckedOutBy" type="secure:UserInfo" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The user meta-data for the system user that has the Batch checked out.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CheckedOutTimeStamp" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The date/time the Batch was checked out by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>    
+      <xs:element name="SubmittingParty" type="secure:SubmittingPartyInfo" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Contains the meta-data for the Submitting Party that is submitting documents to the County.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RequestingParty" type="secure:RequestingPartyInfo" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Contains the meta-data for a Requesting Party identified for the Batch.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IsConcurrent" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>
+            The flag indicating that the Batch has documents that need to be recorded concurrently with another Batch.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CreateTimeStamp" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The date/time the Batch was created.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EditTimeStamp" type="xs:dateTime" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The date/time the Batch was last edited.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Memos" type="BatchMemosDetail" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            A collection that contains the memos for a Batch.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Documents" type="secure:DocumentsInfo">
+        <xs:annotation>
+          <xs:documentation>
+            A collection that contains meta-data for the documents in a Batch.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="_ID" type="xs:integer" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier assigned by the SECURE System for the Batch.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="_SubmissionID" type="secure:Guid" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The submission ID of the batch provided by the submitter.  Used to enforce duplicate submission prevention scheme.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="CountiesInfo">
+    <xs:annotation>
+      <xs:documentation>
+        A collection of available Counties for a specified Submitting Party.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="County" type="secure:CountyInfo" maxOccurs="100">
+        <xs:annotation>
+          <xs:documentation>
+            A collection of available Counties for a specified Submitting Party.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CountyInfo">
+    <xs:annotation>
+      <xs:documentation>
+        Contains the meta-data for a County.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The name of the County.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="75"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="FipsStateCode" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The Federal Information Processing Standard (FIPS) code of the State.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:length value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="FipsCountyCode" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The Federal Information Processing Standard (FIPS) code of the County.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:length value="3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Logo" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The logo of the County encoded in Base64.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string" />
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="_ID" type="xs:integer" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier assigned by the SECURE System for the County.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ProcessQueuesDetail">
+    <xs:annotation>
+      <xs:documentation>
+        A collection of available Process Queues for a specified Submitting Party.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ProcessQueue" type="secure:ProcessQueueDetail" maxOccurs="100">
+        <xs:annotation>
+          <xs:documentation>
+            A collection of available Process Queues for a specified Submitting Party.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ProcessQueueDetail">
+    <xs:annotation>
+      <xs:documentation>
+        Contains the meta-data for a County process queue.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>      
+      <xs:element name="Name" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The name of the Process Queue provided by the County.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Description" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The description of the Process Queue provided by the County.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="100"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="OpenTime" type="xs:time" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The time the Process Queue opens (Military Time) for batch submission to the County.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CloseTime" type="xs:time" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The time the Process Queue closes (Military Time).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="_ID" type="xs:integer" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier assigned by the SECURE System for the Process Queue.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="_CountyID" type="xs:integer" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier assigned by the SECURE System for the County.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  
+  <xs:complexType name="UserInfo">
+    <xs:annotation>
+      <xs:documentation>
+        Contains the meta-data for a system user.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="UserName" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The system user name of the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FirstName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            The first name of the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LastName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            The last name of the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SubmittingPartiesInfo">
+    <xs:annotation>
+      <xs:documentation>
+        A collection of available Submitting Parties for a specified County.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SubmittingParty" type="secure:SubmittingPartyInfo" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            A collection of available Submitting Parties for a specified County.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SubmittingPartyInfo">
+    <xs:annotation>
+      <xs:documentation>
+        Contains the meta-data for the Submitting Party that is submitting documents to the County.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The name of the Submitting Party.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PartyType" type="secure:PartyTypes" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The type of the Submitting Party (Agent, Authorized_Submitter or Government_Agency).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="_ID" type="xs:integer" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier assigned by the SECURE System for the Submitting Party.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="RequestingPartiesInfo">
+    <xs:annotation>
+      <xs:documentation>
+        A collection of available Requesting Parties for a specified Submitting Party.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="RequestingParty" type="secure:RequestingPartyInfo" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            A collection of available Requesting Parties for a specified Submitting Party.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>  
+
+  <xs:complexType name="RequestingPartyInfo">
+    <xs:annotation>
+      <xs:documentation>
+        Contains the meta-data for a Requesting Party.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The name of the Requesting Party.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IsChargingParty" type="xs:boolean" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            This is checked if the requesting party will be charged for the documents.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="_ID" type="xs:integer" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier assigned by the SECURE System for the Requesting Party.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="DocumentsInfo">
+    <xs:annotation>
+      <xs:documentation>
+        A collection that contains meta-data for the documents in a batch.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Document" type="secure:DocumentInfo" maxOccurs="100">
+        <xs:annotation>
+          <xs:documentation>
+            A collection that contains meta-data for the documents in a batch.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="DocumentInfo">
+    <xs:annotation>
+      <xs:documentation>
+        A document including indicies, recordable document, PCORs, and other supporting documentation transmitted to the County.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Number" type="xs:long" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The document number, instrument number, or book and page number (concatenated) for the document assigned by the County.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RecordedTimeStamp" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The date/time the document was recorded by the County.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RecordableFileContentInfo" type="secure:FileContentInfo">
+        <xs:annotation>
+          <xs:documentation>
+            Contains document meta-data for the Recordable Document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PCORFileContentInfo" type="secure:FileContentInfo" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Contains document meta-data for the Preliminary Change of Ownership Record (PCOR) document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OtherFileContentInfo" type="secure:FileContentInfo" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Contains document meta-data for the Other attached document(s).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="StatusCode" type="secure:DocumentMediaStatusCode">
+        <xs:annotation>
+          <xs:documentation>
+            The codes that uniquely identify status of the Document as the Document transitions through the states of transmittal and recording.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActionCode" type="secure:ActionCode">
+        <xs:annotation>
+          <xs:documentation>
+            The action code for the Document Record (None, New, Edit, Delete).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Sequence" type="xs:int">
+        <xs:annotation>
+          <xs:documentation>
+            The sequence position of the document in the batch.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AssessorParcelNumber" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The assessor's parcel number (APN) identified in the Recordable Document.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="TransferTaxAmount" type="secure:Money" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The transfer tax amount for a transfer of interest in real property that is identified in the Recordable Document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SaleAmount" type="secure:Money" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The sale amount for a transfer of interest in real property that is identified in the Recordable Document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Titles" type="secure:TitlesDetail" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            A collection that contains the document recording Titles associated with a Recordable Document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Cities" type="secure:CitiesDetail" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            A collection that contains the cities where the transfer of interest in real property occurred and is identified in the Recordable Document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Fees" type="secure:FeesDetail" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            A collection that contains the recording fees associated with a Recordable Document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Names" type="secure:NamesDetail" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            A collection that contains the Names associated with a Recordable Document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Version" type="xs:int">
+        <xs:annotation>
+          <xs:documentation>
+            The version number of the Document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CreateTimeStamp" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The date/time the Document was created.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EditTimeStamp" type="xs:dateTime" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The date/time the Document was last edited.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Memos" type="DocumentMemosDetail" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            A collection that contains the memos for a Recordable Document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="_ID" type="xs:integer" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier for the Document assigned by the SECURE System.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="_ExternalID" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier for the document assigned by an external system.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="25"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="FileContentDetails">
+    <xs:annotation>
+      <xs:documentation>
+        Contains document meta-data and encoded file content (payload) for the Recordable, PCOR, and Other documents.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="RecordableFileContentDetail" type="secure:FileContentDetail" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Contains document meta-data and encoded file content (payload) for the Recordable document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PCORFileContentDetail" type="secure:FileContentDetail" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Contains document meta-data and encoded file content (payload) for the Preliminary Change of Ownership Record (PCOR) document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OtherFileContentDetail" type="secure:FileContentDetail" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Contains document meta-data and encoded file content (payload) for the Other attached document(s).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TitlesDetail">
+    <xs:annotation>
+      <xs:documentation>
+        A collection that contains the document recording Titles associated with a Recordable Document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Title" type="secure:TitleDetail" minOccurs="0" maxOccurs="100">
+        <xs:annotation>
+          <xs:documentation>
+            A collection that contains the document recording Titles associated with a Recordable Document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TitleDetail">
+    <xs:annotation>
+      <xs:documentation>
+        Contains a document recording Title associated with a Recordable Document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Code" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The code for the document recording Title assigned by the County.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="10"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Description" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The description or name of document recording Title assigned by the County.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>            
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Sequence" type="xs:int" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The sequence order of the Title associated with the Document.
+          </xs:documentation>
+        </xs:annotation>        
+      </xs:element>
+      <xs:element name="ActionCode" type="secure:ActionCode">
+        <xs:annotation>
+          <xs:documentation>
+            The action code for the Title Record (None, New, Edit, Delete).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CreateTimeStamp" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The date/time the Title record was created.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EditTimeStamp" type="xs:dateTime" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The date/time the Title record was edited.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="_ID" type="xs:integer" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier assigned by the SECURE System for the Title.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="_CountyID" type="xs:integer" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier assigned by the SECURE System for the County.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="CitiesDetail">
+    <xs:annotation>
+      <xs:documentation>
+        A collection that contains the cities where the transfer of interest in real property occurred and is identified in the Recordable Document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="City" type="secure:CityDetail" minOccurs="0" maxOccurs="100">
+        <xs:annotation>
+          <xs:documentation>
+            A collection that contains the cities where the transfer of interest in real property occurred and is identified in the Recordable Document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CityDetail">
+    <xs:annotation>
+      <xs:documentation>
+        Contains the city where the transfer of interest in real property occurred and is identified in the Recordable Document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Code" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The code for the City assigned by the County.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Description" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The description or name for the City assigned by the County.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ActionCode" type="secure:ActionCode">
+        <xs:annotation>
+          <xs:documentation>
+            The action code for the City Record (None, New, Edit, Delete).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CreateTimeStamp" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The date/time the City record was created.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EditTimeStamp" type="xs:dateTime" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The date/time the City record was last edited.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="_ID" type="xs:integer" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier assigned by the SECURE System for the City.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="_CountyID" type="xs:integer" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier assigned by the SECURE System for the County.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="FeesDetail">
+    <xs:annotation>
+      <xs:documentation>
+        A collection that contains the recording fees associated with a Recordable Document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Fee" type="secure:FeeDetail" minOccurs="0" maxOccurs="100">
+        <xs:annotation>
+          <xs:documentation>
+            A collection that contains the recording fees associated with a Recordable Document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="FeeDetail">
+    <xs:annotation>
+      <xs:documentation>
+        Contains a recording fee associated with a Recordable Document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Code">
+        <xs:annotation>
+          <xs:documentation>
+            The code for the recording fee assigned by the County.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="10"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Description">
+        <xs:annotation>
+          <xs:documentation>
+            The description for the recording fee assigned by the County.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Amount" type="secure:Money">
+        <xs:annotation>
+          <xs:documentation>
+            The amount of the recording fee assigned by the County.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActionCode" type="secure:ActionCode">
+        <xs:annotation>
+          <xs:documentation>
+            The action code for the Fee Record (None, New, Edit, Delete).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CreateTimeStamp" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The date/time the fee record was created.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EditTimeStamp" type="xs:dateTime" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The date/time the fee record was last edited.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="_ID" type="xs:integer" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier assigned by the SECURE System for the individual Document Fee Record.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="DocumentsDetail">
+    <xs:annotation>
+      <xs:documentation>
+        A collection that contains Document Details for all submitted documents.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Document" type="secure:DocumentDetail" maxOccurs="100">
+        <xs:annotation>
+          <xs:documentation>
+            A collection that contains document meta-data and encoded file content (payload) for either a Recordable, PCOR, or Other document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DocumentDetail">
+    <xs:annotation>
+      <xs:documentation>
+        Contains document meta-data and encoded file content (payload) for either a Recordable, PCOR, or Other document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="StatusCode" type="secure:DocumentMediaStatusCode">
+        <xs:annotation>
+          <xs:documentation>
+            The codes that uniquely identify status of the Document as the Document transitions through the states of transmittal and recording.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FileContentDetails" type="secure:FileContentDetails" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Contains document meta-data and encoded file content (payload) for either a Recordable, PCOR, or Other document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="_ID" type="xs:integer" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier assigned by the SECURE System for the Document.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="_BatchID" type="xs:integer" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier assigned by the SECURE System for the batch.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="_ExternalID" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier for the document assigned by an external system.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="25"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="FileContentDetail">
+    <xs:annotation>
+      <xs:documentation>
+        Contains document meta-data and encoded file content (payload) for either a Recordable, PCOR, or Other document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FileContentInfo" type="secure:FileContentInfo">
+        <xs:annotation>
+          <xs:documentation>
+            Contains document meta-data for either a Recordable, PCOR, or Other document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FileContent" type="secure:FileContent" maxOccurs="100">
+        <xs:annotation>
+          <xs:documentation>
+            Contains encoded file content (payload) for either a Recordable, PCOR, or Other document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="FileContentInfo">
+    <xs:annotation>
+      <xs:documentation>
+        Contains document meta-data for either a Recordable, PCOR, or Other document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PageCount" type="xs:integer">
+        <xs:annotation>
+          <xs:documentation>
+            The number of pages in the document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EmbeddedFileType" type="secure:EmbededFileTypes">
+        <xs:annotation>
+          <xs:documentation>
+            The type of file embedded in the File Content (Single_Page_Tiff, Multi_Page_Tiff or PRIA_DOCUMENT).
+          </xs:documentation>
+        </xs:annotation>        
+      </xs:element>
+      <xs:element name="ActionCode" type="secure:ActionCode">
+        <xs:annotation>
+          <xs:documentation>
+            The action code for the Document Record (None, New, Edit, Delete).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="_ID" type="xs:integer" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier assigned by the SECURE System for the individual Document File Record.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="FileContent">
+    <xs:annotation>
+      <xs:documentation>
+        Contains encoded file content (payload) for either a Recordable, PCOR, or Other document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Encoding" type="secure:EncodingTypes">
+        <xs:annotation>
+          <xs:documentation>
+            The encoding type (Base 64) of the file content (payload).
+          </xs:documentation>
+        </xs:annotation>        
+      </xs:element>
+      <xs:element name="FileBuffer">
+        <xs:annotation>
+          <xs:documentation>
+            The (Base 64) encoded file content (payload). (FileBuffer is limited to 25MB of data and has a character limit of 35,000,000).
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="35000000"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="_Sequence" type="xs:integer" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The sequence of image files in Single_Page_TIFF encoded file.  Should be set to 1 for PRIA_XML and Multi_Page_TIFF.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="BatchMemosDetail">
+    <xs:annotation>
+      <xs:documentation>
+        A collection that contains the memos for a Batch.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="BatchMemos" type="secure:MemoDetail" minOccurs="0" maxOccurs="100">
+        <xs:annotation>
+          <xs:documentation>
+            A collection that contains the memos for a Batch.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DocumentMemosDetail">
+    <xs:annotation>
+      <xs:documentation>
+        A collection that contains the memos for a Recordable Document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DocumentMemos" type="secure:MemoDetail" minOccurs="0" maxOccurs="100">
+        <xs:annotation>
+          <xs:documentation>
+            A collection that contains the memos for a Recordable Document.            
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MemoDetail">
+    <xs:annotation>
+      <xs:documentation>
+        Contains a Memo for a Batch or Document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Memo" type="secure:Memo">
+        <xs:annotation>
+          <xs:documentation>
+            A text that contains the Batch or Document Memo.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDisplayName" minOccurs="0" >
+        <xs:annotation>
+          <xs:documentation>
+            The readable name of the user who created the Batch or Document Memo.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="UserName" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The system user name of the user who created the Batch or Document Memo.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Type" type="secure:MemoTypes" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The type of the Memo Record (Note or Reject_Reason).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActionCode" type="secure:ActionCode">
+        <xs:annotation>
+          <xs:documentation>
+            The action code for the Memo Record (None, New, Edit, Delete).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CreateTimeStamp" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The date/time the Batch or Document Memo was created.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EditTimeStamp" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>
+            The date/time the Batch or Document Memo was edited.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="_ID" type="xs:integer" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier assigned by the SECURE System for the Batch or Document Memo.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="IndexOptionDetail">
+    <xs:annotation>
+      <xs:documentation>
+        Contains the configurable batch and document indices that are enabled by each County.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="EnableTitleIndex" type="xs:boolean" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The specified County uses the Titles collection index.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RequireTitleIndex" type="xs:boolean" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The specified County requires the Titles collection index.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EnableNamesIndex" type="xs:boolean" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The specified County uses the names (Grantor/Grantee) collection.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RequireNamesIndex" type="xs:boolean" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The specified County requires the names (Grantor/Grantee) collection.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EnableAPNIndex" type="xs:boolean" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The specified County uses the Assessor Parcel Number (APN) index.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RequireAPNIndex" type="xs:boolean" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The specified County requires the Assessor Parcel Number (APN) index.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EnableTransferTaxIndex" type="xs:boolean" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The specified County uses the Transfer Tax index.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RequireTransferTaxIndex" type="xs:boolean" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The specified County requires the Transfer Tax index.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EnableAmountSaleIndex" type="xs:boolean" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The specified County uses the Amount of Sale index.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RequireAmountSaleIndex" type="xs:boolean" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The specified County requires the Amount of Sale index.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EnableCityIndex" type="xs:boolean" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The specified County uses the Cities collection index.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RequireCityIndex" type="xs:boolean" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The specified County requires the Cities collection index.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EnableConcurrentIndex" type="xs:boolean" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The specified County uses the Is Concurrent index.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RequireConcurrentIndex" type="xs:boolean" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The specified County requires the Is Concurrent index.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EnableRequestingParty" type="xs:boolean" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The specified County uses the Requesting Party index.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RequireRequestingParty" type="xs:boolean" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The specified County requires the Requesting Party index.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="_CountyID" type="xs:integer" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier assigned by the SECURE System for the County.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ResultDetail">
+    <xs:annotation>
+      <xs:documentation>
+        Contains the Boolean (true or false) return value.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>     
+      <xs:element name="Value" type="xs:boolean" maxOccurs="1" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The Boolean (true or false) return value.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="NamesDetail">
+    <xs:annotation>
+      <xs:documentation>
+        A collection that contains the Names associated with a Recordable Document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name" type="secure:NameDetail" minOccurs="0" maxOccurs="100">
+        <xs:annotation>
+          <xs:documentation>
+            A collection that contains the Names associated with a Recordable Document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="NameDetail">
+    <xs:annotation>
+      <xs:documentation>
+        Contains a Name associated with a Recordable Document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Type" type="secure:NameTypes">
+        <xs:annotation>
+          <xs:documentation>
+            The type of the name (Grantor, Grantee, or Other).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Value" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The value of the Name associated with the Document. This is the full unparsed name of the (Grantor, Grantee, or Other).
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="150"/>            
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Prefix" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The prefix value of the (Grantor, Grantee, or Other) name.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="10"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="FirstName" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The first name value of the (Grantor, Grantee, or Other) name.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="40"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="MiddleName" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The middle name value of the (Grantor, Grantee, or Other) name.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="40"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="LastName" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The last name value of the (Grantor, Grantee, or Other) name.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Suffix" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The suffix value of the (Grantor, Grantee, or Other) name.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="10"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ActionCode" type="secure:ActionCode">
+        <xs:annotation>
+          <xs:documentation>
+            The action code for the Name Record (None, New, Edit, Delete).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CreateTimeStamp" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The date/time the Name record was created.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EditTimeStamp" type="xs:dateTime" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The date/time the Name record was edited.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="_ID" type="xs:integer" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The unique identifier assigned by the SECURE System for the individual Document Name Record.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:simpleType name="EncodingTypes">
+    <xs:annotation>
+      <xs:documentation>
+        The types of file encoding supported by the SECURE System.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Base64">
+        <xs:annotation>
+          <xs:documentation>
+            The embedded file encoded using Base64.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="NameTypes">
+    <xs:annotation>
+      <xs:documentation>
+        The types of document index names supported by the SECURE System.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Grantor">
+        <xs:annotation>
+          <xs:documentation>
+            The type of the document index name is a grantor.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Grantee">
+        <xs:annotation>
+          <xs:documentation>
+            The type of the document index name is a grantee.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Other">
+        <xs:annotation>
+          <xs:documentation>
+            The type of the document index name is not a grantor or a grantee.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="MemoTypes">
+    <xs:annotation>
+      <xs:documentation>
+        The types of memos supported by the SECURE System.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Note">
+        <xs:annotation>
+          <xs:documentation>
+            The type of the memo is a note.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Reject_Reason">
+        <xs:annotation>
+          <xs:documentation>
+            The type of the memo is a reject reason from the County.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>     
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name ="EmbededFileTypes">
+    <xs:annotation>
+      <xs:documentation>
+        The file types supported by the SECURE System.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Single_Page_Tiff">
+        <xs:annotation>
+          <xs:documentation>
+            The embedded file type of the document payload is Single Page TIFFs.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Multi_Page_Tiff">
+        <xs:annotation>
+          <xs:documentation>
+            The embedded file type of the document payload is a Multi-page TIFF.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PRIA_XML">
+        <xs:annotation>
+          <xs:documentation>
+            The embedded file type of the document payload is a PRIA XML document. [For future use, not currently supported by any of the Counties.]
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="DocumentMediaStatusCode">
+    <xs:annotation>
+      <xs:documentation>
+        The codes that uniquely identify status of the Document as the Document transitions through the states of transmittal and recording.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="New">
+        <xs:annotation>
+          <xs:documentation>
+            The document payload is new and has not been uploaded.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Uploaded">
+        <xs:annotation>
+          <xs:documentation>
+            The document payload has been uploaded by the Submitter to SECURE for examination by the County.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Correction">
+        <xs:annotation>
+          <xs:documentation>
+            The document payload has been uploaded by the County to SECURE for correction by the Submitter.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Corrected">
+        <xs:annotation>
+          <xs:documentation>
+            The corrected document payload has been uploaded by the Submitter to SECURE for re-examination by the County.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Rejected">
+        <xs:annotation>
+          <xs:documentation>
+            The document payload has been rejected by the County.  The document cannot be corrected.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Recorded">
+        <xs:annotation>
+          <xs:documentation>
+            The document payload has been recorded by the County.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Purged">
+        <xs:annotation>
+          <xs:documentation>
+            The document payload has been purged from SECURE.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="BatchMediaStatusCode">
+    <xs:annotation>
+      <xs:documentation>
+        The codes that uniquely identify status of the Batch as the Batch transitions through the states of transmittal and recording.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">      
+      <xs:enumeration value="New">
+        <xs:annotation>
+          <xs:documentation>
+            The batch is new and has not been submitted.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Submitter_Uploading">
+        <xs:annotation>
+          <xs:documentation>
+            The Submitter is uploading the batch to SECURE for examination by the County.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Uploaded_By_Submitter">
+        <xs:annotation>
+          <xs:documentation>
+            The Submitter has uploaded the batch to SECURE for examination by the County.  The batch is waiting to be downloaded by the County for examination.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Downloaded_By_County">
+        <xs:annotation>
+          <xs:documentation>
+            The batch has been downloaded by the County for examination.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="County_Uploading_Correction">
+        <xs:annotation>
+          <xs:documentation>
+            The County is uploading the batch to SECURE for correction by the Submitter.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Correction_Uploaded_By_County">
+        <xs:annotation>
+          <xs:documentation>
+            The County has uploaded the batch to SECURE for correction by the Submitter.  The batch is waiting to be downloaded by the Submitter for correction.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Correction_Downloaded_By_Submitter">
+        <xs:annotation>
+          <xs:documentation>
+            The batch has been downloaded by the Submitter for correction.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Submitter_Uploading_Corrected">
+        <xs:annotation>
+          <xs:documentation>
+            The Submitter is uploading the corrected batch to SECURE for re-examination by the County.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Corrected_Uploaded_By_Submitter">
+        <xs:annotation>
+          <xs:documentation>
+            The Submitter has uploaded the corrected batch to SECURE for re-examination by the County.  The batch is waiting to be downloaded by the County for re-examination.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Corrected_Downloaded_By_County">
+        <xs:annotation>
+          <xs:documentation>
+            The corrected batch has been downloaded by the County for re-examination.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="County_Uploading_Completed">
+        <xs:annotation>
+          <xs:documentation>
+            The County is uploading the completed batch to SECURE for the Submitter.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Completed_Uploaded_By_County">
+        <xs:annotation>
+          <xs:documentation>
+            The County has uploaded the completed batch to SECURE for the Submitter.  The batch is waiting to be downloaded by the Submitter.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Completed_Downloaded_By_Submitter">
+        <xs:annotation>
+          <xs:documentation>
+            The completed batch has been downloaded by the Submitter.  The processing of this batch is complete.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Purged">
+        <xs:annotation>
+          <xs:documentation>
+            The document payloads have been purged from SECURE for the batch.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ActionCode">
+    <xs:annotation>
+      <xs:documentation>
+        These codes inform the SECURE System that one of the following actions is intended on the data.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None">
+        <xs:annotation>
+          <xs:documentation>
+            The data in the element has not been changed.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="New">
+        <xs:annotation>
+          <xs:documentation>
+            The data in the element is new.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Edit">
+        <xs:annotation>
+          <xs:documentation>
+            The data in the element has been modified.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Delete">
+        <xs:annotation>
+          <xs:documentation>
+            The data in the element is flagged for deletion.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="PartyTypes">
+    <xs:annotation>
+      <xs:documentation>
+        The type of the Submitting Party (Agent, Authorized_Submitter or Government Agency).
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Agent">
+        <xs:annotation>
+          <xs:documentation>
+            The type of party is an Agent.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Authorized_Submitter">
+        <xs:annotation>
+          <xs:documentation>
+            The type of party is an Authorized Submitter.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Government_Agency">
+        <xs:annotation>
+          <xs:documentation>
+            The type of party is a Government Agency.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="Money">
+    <xs:annotation>
+      <xs:documentation>
+        The supported money format in the SECURE System.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:decimal">
+      <xs:totalDigits value="17"/>
+      <xs:fractionDigits value="2"/>
+      <xs:maxInclusive value="922337203685477.58"/>
+      <xs:minInclusive value="-922337203685477.58"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Guid">
+    <xs:annotation>
+      <xs:documentation>
+        The supported GUID format in the SECURE System.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})|(\{[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\})"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Memo">
+    <xs:annotation>
+      <xs:documentation>
+        The supported memo string format in the SECURE System.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="8000"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

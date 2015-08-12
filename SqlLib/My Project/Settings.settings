@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="dbMySql" Type="System.String" Scope="User">
+      <Value Profile="(Default)">server=10.38.18.205;user id=michaelw;persistsecurityinfo=True;password=GoldenState$77;Convert Zero Datetime=true</Value>
+    </Setting>
+    <Setting Name="dbMSSql" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=M1CFAE;Initial Catalog=eSubmit_Live;Persist Security Info=True;User ID=dpsxml;Password=Crt_data590</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
